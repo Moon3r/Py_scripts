@@ -8,7 +8,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 
-url = 'https://sss.xn--yeto25cioc.com/'
+url = 'https://wxkxsw.com/'
 email = 'your_email_address'
 
 def login():
@@ -17,14 +17,14 @@ def login():
 	headers = {
 		'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36'
 	}
-	req.get(url=url+'auth/login', headers=headers)
+	req.get(url=url+'auth/login', headers=headers, verify=False)
 	data = {
 		'email': email,
 		'passwd': 'password',
 		'code': ''
 	}
 
-	res = req.post(url=url+'auth/login', data=data, headers=headers, timeout=5)
+	res = req.post(url=url+'auth/login', data=data, headers=headers, timeout=5, verify=False)
 	result = json.loads(res.content)
 	if result['ret']:
 		print("[+] " + result['msg'])
@@ -36,7 +36,7 @@ def checkin(req):
 		'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.117 Safari/537.36'
 	}
 
-	res = req.post(url=url+'user/checkin')
+	res = req.post(url=url+'user/checkin', verify=False)
 	result = json.loads(res.content)
 	return result['msg']
 
@@ -44,15 +44,15 @@ def loop_check():
 	req = login()
 	if req:
 		ret = checkin(req)
-		exit('[+] ' + FLAG03)
+		exit('[+] ' + ret)
 	else:
 		exit('[-] Login Failed.')
 
 def check_error():
-	mail_host = "smtp.aliyun.com"
+	mail_host = "smtp.xxx.com"
 	mail_pass = "xxxffaxfda"
 	sender = email
-	receivers = ['kkzeroc@163.com']
+	receivers = ['xxx@xxx.com']
 
 	message = MIMEText("<a href='" + url + '>check goes wrong.</a>', 'html', 'utf-8')
 	message['From'] = Header(sender)
@@ -78,6 +78,3 @@ if __name__ == '__main__':
 		except:
 			check_error()
 
-
-# ssr interface https://lists.i-00-u.com/link/eSrGsTvQLfzYKSDM?mu=0
-# 				https://lists.i-00-u.com/link/eSrGsTvQLfzYKSDM?mu=1
