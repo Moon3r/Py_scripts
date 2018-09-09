@@ -12,7 +12,7 @@ string = string.encode('gb2312')
 
 #opener = urllib2.build_opener(urllib2.HTTPCookieProcessor())
 
-payloads = {"DDDDD" : "xgy-123","upass" : "xgy-123","0MKKey" : string}
+payloads = {"DDDDD" : "username","upass" : "password","0MKKey" : string}
 pay = urllib.urlencode(payloads)
 #response = opener.open(req, pay)
 while True:
