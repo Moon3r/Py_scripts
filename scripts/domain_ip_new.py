@@ -181,7 +181,22 @@ def one_domain(domain):
 if args.domain:
     files = [args.domain]
 else:
-    files = readfile(args.inputfile)
+    try:
+        files = readfile(args.inputfile)
+    except:
+        usage = '''usage: domain_ip_new.py [-h] [-t THREADS] [-f INPUTFILE] [-i DOMAIN] [-c]
+
+DnsSolver To Get Real IP
+
+optional arguments:
+  -h, --help    show this help message and exit
+  -t THREADS    set multiprocessing number
+  -f INPUTFILE  input file
+  -i DOMAIN     domain you want analyze
+  -c            check if domain exists or resolved'''
+        print(usage)
+        exit()
+        
 dboprator = Dboprate(files)
 if not args.check:
     dboprator.init_db()
